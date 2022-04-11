@@ -1,18 +1,13 @@
 import React, { useState } from 'react';
-import { useAuthState, useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 
 const Shipment = () => {
-    const [user]=useAuthState(auth);
+ const [user]=useAuthState(auth);
 const[name,setName]=useState(' ')   
-const [email,setEmail]=useState(' ')
 const [address,setAddress]=useState(' ')
 const [phone,setPhone]=useState(' ')
-const [error,setError]=useState(' ')
-// const navigate= useNavigate()
 
-// const [createUserWithEmailAndPassword,user]=useCreateUserWithEmailAndPassword(auth)
 
 
 
@@ -27,21 +22,8 @@ const handlePhoneNumberBlur=(e) => {
 setPhone(e.target.value)
 }
 
-
-// if (user) {
-//    navigate('/shop') 
-// }
 const handleCreateUser=(e) => {
     e.preventDefault();
-    // if(password !==confirmPassword){
-    //     setError('Your two passwords did not match!!')
-    //     return;
-    // }
-    // // if (password.length<6) {
-    // //     setError('Your password must be at least 6 characters or more')
-    // //     return;
-    // // }
-    // createUserWithEmailAndPassword(email, password)
 }
 
     return (
