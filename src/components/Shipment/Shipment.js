@@ -24,6 +24,8 @@ setPhone(e.target.value)
 
 const handleCreateUser=(e) => {
     e.preventDefault();
+    const shipping={name,address,phone};
+    console.log(shipping);
 }
 
     return (
@@ -47,9 +49,6 @@ const handleCreateUser=(e) => {
             <label htmlFor="password">Phone Number</label>
             <input onBlur={handlePhoneNumberBlur} type="number" name="text" id="" required/>
             </div>
-            <p style={{ color: 'red'}}>
-                {error }
-            </p>
             <div >
                 <input className="form_submit" type="submit" value="Add shipping" />
             </div>

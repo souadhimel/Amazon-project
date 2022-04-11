@@ -2,23 +2,22 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./Login.css";
 import { FcGoogle } from "react-icons/fc";
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useAuthState, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
+import SignOut from '../SignOut/SignOut';
 
 const Login = () => {
+    const [user]=useAuthState(auth);
     const [email,setEmail]=useState(" ")
     const [password,setPassword]=useState(" ")
+    const[error,setError]=useState(" ")
     const navigate = useNavigate()
     const location=useLocation()
     const  from = location.state?.from?.pathname || "/";
    
+// log in with email and password
+    const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
 
-    const [
-        signInWithEmailAndPassword,
-        user,
-        loading,
-        error,
-      ] = useSignInWithEmailAndPassword(auth);
     const handleEmailBlur=(e) => {
         setEmail(e.target.value)
     }
@@ -34,6 +33,8 @@ const Login = () => {
         e.preventDefault()
         signInWithEmailAndPassword(email, password)
     }
+// google sign in
+    const [signInWithGoogle] = useSignInWithGoogle(auth);
     return (
         <div className="form_container">
             <div>
@@ -59,7 +60,11 @@ const Login = () => {
             <div className="divider_line"></div>
             </div>
                 <div >
-                    <button className="form_submit_google" ><FcGoogle></FcGoogle>  Continue with Google</button>
+                    {
+                        user? <SignOut></SignOut>:
+                        <button onClick={()=>signInWithGoogle()} className="form_submit_google" ><FcGoogle></FcGoogle>  Continue with Google</button>
+                        
+                    }
                    
                 </div>
                 

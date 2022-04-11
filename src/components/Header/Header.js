@@ -19,7 +19,7 @@ const Header = () => {
                 <Link to="/orders">Orders</Link>
                 <Link to="/inventory">Inventory</Link>
                 <Link to="/about">About</Link>
-                { user? <button onClick={handleSignOut} style={{marginLeft:'10px'}}>sign out</button>:<Link to="/login">Login</Link>}
+                { user? <button onClick={handleSignOut} style={{marginLeft:'10px', textColor:'red'}}>sign out</button>:<Link to="/login">Login</Link>}
             </div>
         </nav>
     );
